@@ -1,0 +1,9 @@
+{
+  "name": "apply-fix",
+  "version": "0.1.0",
+  "description": "Slash command that applies fixes (from prior review findings in context, or surfaced by check failures) and iterates the project's check commands (lint, type-check, build, test, etc.) until all pass.",
+  "author": {
+    "name": "kurosame",
+    "url": "https://github.com/kurosame"
+  }
+}

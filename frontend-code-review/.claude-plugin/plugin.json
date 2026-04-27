@@ -1,0 +1,9 @@
+{
+  "name": "frontend-code-review",
+  "version": "0.1.0",
+  "description": "Slash command that performs a read-only code review of a frontend project (Node ecosystem: npm/yarn/pnpm) and reports structured findings. Does not edit files.",
+  "author": {
+    "name": "kurosame",
+    "url": "https://github.com/kurosame"
+  }
+}

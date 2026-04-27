@@ -1,0 +1,9 @@
+{
+  "name": "pr",
+  "version": "0.1.0",
+  "description": "Slash command that branches from main, commits all uncommitted changes in the working tree, and opens a single consolidated pull request.",
+  "author": {
+    "name": "kurosame",
+    "url": "https://github.com/kurosame"
+  }
+}

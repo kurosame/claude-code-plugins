@@ -1,0 +1,24 @@
+{
+  "name": "kurosame-claude-code-plugins",
+  "owner": {
+    "name": "kurosame",
+    "url": "https://github.com/kurosame"
+  },
+  "plugins": [
+    {
+      "name": "frontend-code-review",
+      "source": "./frontend-code-review",
+      "description": "Frontend-focused code review for Node ecosystem projects (Vue/Nuxt, React/Next, etc.). Read-only — reports findings without editing files."
+    },
+    {
+      "name": "apply-fix",
+      "source": "./apply-fix",
+      "description": "Applies fixes (from prior review findings or check failures) and iterates the project's check commands (lint, type-check, build, test) until all pass."
+    },
+    {
+      "name": "pr",
+      "source": "./pr",
+      "description": "Branches from main, commits all uncommitted changes, and opens a single consolidated pull request."
+    }
+  ]
+}
