@@ -2,7 +2,7 @@
 description: Frontend-focused code review of the entire codebase. Reports findings only — does not edit files.
 ---
 
-Follow these instructions strictly. This command targets **frontend projects in the Node ecosystem** (Vue/Nuxt, React/Next, Svelte/SvelteKit, etc., managed by `npm` / `yarn` / `pnpm`).
+Follow these instructions strictly. This command targets **frontend projects in the Node ecosystem** (managed by `npm` / `yarn` / `pnpm`).
 
 This is a **review-only** command. Do NOT edit, branch, commit, or open a PR — only produce findings.
 
@@ -33,4 +33,4 @@ This is a **review-only** command. Do NOT edit, branch, commit, or open a PR —
 ## UI/UX Review (optional)
 
 - If the project ships UI code and the `ui-ux-pro-max` skill is available in the current session, use it to review UI/UX quality.
-- Adapt the review to the project's frontend stack (Vue/Nuxt/Element Plus/UnoCSS, React/Next, Svelte/SvelteKit, etc.) inferred from the codebase.
+- Adapt the review to the project's frontend stack inferred from the codebase.

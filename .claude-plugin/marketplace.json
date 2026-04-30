@@ -8,7 +8,12 @@
     {
       "name": "frontend-code-review",
       "source": "./frontend-code-review",
-      "description": "Frontend-focused code review for Node ecosystem projects (Vue/Nuxt, React/Next, etc.). Read-only — reports findings without editing files."
+      "description": "Framework-agnostic frontend code review for Node ecosystem projects. Read-only — reports findings without editing files."
+    },
+    {
+      "name": "vue-code-review",
+      "source": "./vue-code-review",
+      "description": "Vue/Nuxt-focused code review (detects Nuxt automatically). Read-only — reports findings without editing files."
     },
     {
       "name": "apply-fix",
