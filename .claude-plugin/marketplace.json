@@ -16,6 +16,11 @@
       "description": "Vue/Nuxt-focused code review (detects Nuxt automatically). Read-only — reports findings without editing files."
     },
     {
+      "name": "update-ai-config",
+      "source": "./update-ai-config",
+      "description": "Reviews the entire codebase against AI meta configuration files (CLAUDE.md, AGENTS.md, .claude/rules/*.md) and reports what should be added, updated, or created. Read-only — reports findings without editing files."
+    },
+    {
       "name": "apply-fix",
       "source": "./apply-fix",
       "description": "Applies fixes (from prior review findings or check failures) and iterates the project's check commands (lint, type-check, build, test) until all pass."
@@ -23,7 +28,7 @@
     {
       "name": "pr",
       "source": "./pr",
-      "description": "Branches from main, commits all uncommitted changes, and opens a single consolidated pull request."
+      "description": "Groups uncommitted changes by relatedness and opens one PR per group from a fresh branch off main (falls back to a single PR when only one group)."
     }
   ]
 }
