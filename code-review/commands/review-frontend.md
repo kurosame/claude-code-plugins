@@ -4,6 +4,8 @@ description: Frontend-focused code review of the entire codebase. Reports findin
 
 Follow these instructions strictly. This command targets **frontend projects in the Node ecosystem** (managed by `npm` / `yarn` / `pnpm`).
 
+For Vue or Nuxt projects, use `/review-vue` instead — it carries Vue/Nuxt-specific rules on top of the general frontend guidelines.
+
 This is a **review-only** command. Do NOT edit, branch, commit, or open a PR — only produce findings.
 
 ## Scope

@@ -1,7 +1,7 @@
 {
   "name": "update-ai-config",
   "version": "0.1.0",
-  "description": "Slash command that reviews the entire codebase against AI meta configuration files (CLAUDE.md, AGENTS.md, .claude/rules/*.md) and reports what should be added, updated, or created. Read-only — reports findings without editing files.",
+  "description": "Slash command that reviews the entire codebase against the project's AI meta configuration files and reports what should be added, updated, or created. Read-only — reports findings without editing files.",
   "author": {
     "name": "kurosame",
     "url": "https://github.com/kurosame"

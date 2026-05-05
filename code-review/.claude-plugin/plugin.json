@@ -1,0 +1,9 @@
+{
+  "name": "code-review",
+  "version": "0.1.0",
+  "description": "Slash commands that perform a read-only code review of the codebase and report structured findings. Provides stack-specific variants under `/review-<stack>`. Does not edit files.",
+  "author": {
+    "name": "kurosame",
+    "url": "https://github.com/kurosame"
+  }
+}

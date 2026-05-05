@@ -1,7 +1,7 @@
 {
   "name": "pr",
   "version": "0.1.0",
-  "description": "Slash command that branches from main, commits all uncommitted changes in the working tree, and opens a single consolidated pull request.",
+  "description": "Slash command that groups uncommitted changes by relatedness and opens one pull request per group from a fresh branch off main (falls back to a single PR when only one group).",
   "author": {
     "name": "kurosame",
     "url": "https://github.com/kurosame"

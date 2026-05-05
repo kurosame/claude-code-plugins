@@ -6,24 +6,24 @@
   },
   "plugins": [
     {
-      "name": "frontend-code-review",
-      "source": "./frontend-code-review",
-      "description": "Framework-agnostic frontend code review for Node ecosystem projects. Read-only — reports findings without editing files."
-    },
-    {
-      "name": "vue-code-review",
-      "source": "./vue-code-review",
-      "description": "Vue/Nuxt-focused code review (detects Nuxt automatically). Read-only — reports findings without editing files."
+      "name": "code-review",
+      "source": "./code-review",
+      "description": "Read-only code review slash commands with stack-specific variants under `/review-<stack>`. Reports findings without editing files."
     },
     {
       "name": "update-ai-config",
       "source": "./update-ai-config",
-      "description": "Reviews the entire codebase against AI meta configuration files (CLAUDE.md, AGENTS.md, .claude/rules/*.md) and reports what should be added, updated, or created. Read-only — reports findings without editing files."
+      "description": "Reviews the entire codebase against the project's AI meta configuration files and reports what should be added, updated, or created. Read-only — reports findings without editing files."
     },
     {
       "name": "apply-fix",
       "source": "./apply-fix",
       "description": "Applies fixes (from prior review findings or check failures) and iterates the project's check commands (lint, type-check, build, test) until all pass."
+    },
+    {
+      "name": "playwright-e2e",
+      "source": "./playwright-e2e",
+      "description": "Slash commands that orchestrate Playwright's auto-generated planner / generator / healer agents for end-to-end testing in CI. Pairs with `npx playwright init-agents --loop=claude`."
     },
     {
       "name": "pr",

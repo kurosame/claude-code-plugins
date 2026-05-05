@@ -4,6 +4,8 @@ description: Vue/Nuxt-focused code review of the entire codebase. Reports findin
 
 Follow these instructions strictly. This command targets **Vue projects** (Vue 3 with `<script setup>` / Composition API). If the project is a **Nuxt** project, also apply the Nuxt-specific guidelines in this document.
 
+For non-Vue frontend projects (React, Svelte, plain TS, etc.), use `/review-frontend` instead.
+
 This is a **review-only** command. Do NOT edit, branch, commit, or open a PR — only produce findings.
 
 ## Scope

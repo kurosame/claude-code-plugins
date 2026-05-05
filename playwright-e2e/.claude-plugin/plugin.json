@@ -1,0 +1,9 @@
+{
+  "name": "playwright-e2e",
+  "version": "0.1.0",
+  "description": "Slash commands that orchestrate Playwright's auto-generated planner / generator / healer agents for end-to-end testing in CI. Pairs with `npx playwright init-agents --loop=claude`.",
+  "author": {
+    "name": "kurosame",
+    "url": "https://github.com/kurosame"
+  }
+}
