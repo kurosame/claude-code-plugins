@@ -23,3 +23,7 @@ Analyze the most recent Playwright run and fix the failing tests.
 - Determine the root cause of each failure from that output.
 - Fix selectors, assertions, or waits in the spec files when the test itself is wrong.
 - If a failure looks like a real product regression rather than a flaky / mis-written test, surface it explicitly instead of masking it.
+
+## Constraints
+
+Limit `mcp__playwright-test__test_debug` to 3 calls per invocation. Stop healing when reached and report any unfixed tests.
