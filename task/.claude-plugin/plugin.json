@@ -1,0 +1,9 @@
+{
+  "name": "task",
+  "version": "0.1.0",
+  "description": "Slash command that loads a task description from `.claude-task.md` and surfaces it as findings for `/apply-fix` to consume. Read-only — reports findings without editing files.",
+  "author": {
+    "name": "kurosame",
+    "url": "https://github.com/kurosame"
+  }
+}

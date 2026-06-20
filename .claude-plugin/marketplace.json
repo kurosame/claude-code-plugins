@@ -11,19 +11,24 @@
       "description": "Read-only code review slash commands with stack-specific variants under `/review-<stack>`. Reports findings without editing files."
     },
     {
-      "name": "update-ai-config",
-      "source": "./update-ai-config",
-      "description": "Reviews the entire codebase against the project's AI meta configuration files and reports what should be added, updated, or created. Read-only — reports findings without editing files."
+      "name": "task",
+      "source": "./task",
+      "description": "Loads a task description from `.claude-task.md` and surfaces it as findings for `/apply-fix` to consume. Read-only — reports findings without editing files."
     },
     {
-      "name": "apply-fix",
-      "source": "./apply-fix",
-      "description": "Applies fixes (from prior review findings or check failures) and iterates the project's check commands (lint, type-check, build, test) until all pass."
+      "name": "ai-config",
+      "source": "./ai-config",
+      "description": "Reviews the entire codebase against the project's AI meta configuration files and reports what should be added, updated, or created. Read-only — reports findings without editing files."
     },
     {
       "name": "playwright-e2e",
       "source": "./playwright-e2e",
       "description": "Slash commands that orchestrate Playwright's auto-generated planner / generator / healer agents for end-to-end testing in CI. Pairs with `npx playwright init-agents --loop=claude`."
+    },
+    {
+      "name": "apply-fix",
+      "source": "./apply-fix",
+      "description": "Applies fixes (from prior review findings or check failures) and iterates the project's check commands (lint, type-check, build, test) until all pass."
     },
     {
       "name": "pr",
