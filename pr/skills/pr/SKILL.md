@@ -1,4 +1,5 @@
 ---
+name: pr
 description: Commit uncommitted changes from new branch(es) off main, push, and open one PR per related-change group.
 ---
 

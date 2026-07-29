@@ -1,4 +1,5 @@
 ---
+name: ai-config
 description: Review the codebase against AI meta configuration files (CLAUDE.md, AGENTS.md) and report what should be added, updated, or restructured. Read-only — does not edit files.
 ---
 

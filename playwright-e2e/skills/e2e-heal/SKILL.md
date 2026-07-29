@@ -1,4 +1,5 @@
 ---
+name: e2e-heal
 description: Ask the Playwright healer agent to analyze the latest run and fix the failing tests.
 ---
 

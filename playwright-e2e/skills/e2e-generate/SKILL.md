@@ -1,4 +1,5 @@
 ---
+name: e2e-generate
 description: Ask the Playwright generator agent to turn the plan files in tests/ into runnable spec files.
 ---
 

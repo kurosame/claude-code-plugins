@@ -1,4 +1,5 @@
 ---
+name: review-vue
 description: Vue/Nuxt-focused code review of the entire codebase. Reports findings only — does not edit files.
 ---
 

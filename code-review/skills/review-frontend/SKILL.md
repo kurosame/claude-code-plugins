@@ -1,4 +1,5 @@
 ---
+name: review-frontend
 description: Frontend-focused code review of the entire codebase. Reports findings only — does not edit files.
 ---
 

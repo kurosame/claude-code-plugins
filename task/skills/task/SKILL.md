@@ -1,4 +1,5 @@
 ---
+name: task
 description: Load a task description from .claude-task.md and surface it as findings for /apply-fix.
 ---
 

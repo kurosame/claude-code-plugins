@@ -1,4 +1,5 @@
 ---
+name: apply-fix
 description: Apply fixes (from prior review findings or detected by checks) and iterate the project's check commands until all pass.
 ---
 

@@ -1,4 +1,5 @@
 ---
+name: e2e-plan
 description: Auto-detect testable surfaces from the repo and ask the Playwright planner agent to write E2E scenarios under tests/.
 ---
 
