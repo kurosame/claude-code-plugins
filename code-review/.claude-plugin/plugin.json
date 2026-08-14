@@ -5,5 +5,6 @@
   "author": {
     "name": "kurosame",
     "url": "https://github.com/kurosame"
-  }
+  },
+  "dependencies": ["ui-ux-pro-max-skill", "modern-web-guidance"]
 }

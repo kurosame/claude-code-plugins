@@ -23,6 +23,7 @@ This command's job:
 3. Report the parsed result back as findings:
    - If `Source: <URL>` was captured, include a finding "PR body should begin with `Source: <URL>` followed by a blank line" so that `/pr` will preserve the upstream link.
    - For each logically separable requirement inside `<task>...</task>`, emit one finding. Each finding describes *what* should change in prose (not as a patch). `/apply-fix` will produce the actual edits or new files.
+   - If any requirement involves implementing or changing UI/frontend code, include a finding directing `/apply-fix` to use the `ui-ux-pro-max` skill for UI/UX design decisions and the `modern-web-guidance` skills for current web platform best practices and Baseline browser compatibility.
 4. Stop. Do not invoke `/apply-fix`, `/pr`, or any other command — the caller's workflow will chain them.
 
 ## Policies

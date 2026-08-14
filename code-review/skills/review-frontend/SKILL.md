@@ -33,7 +33,12 @@ This is a **review-only** command. Do NOT edit, branch, commit, or open a PR —
 - Code formatting and import ordering are managed by formatters/linters (Prettier, ESLint, Stylelint, Biome, etc.) and enforced via git hooks.
 - Focus only on logic, potential bugs, security issues, and architectural improvements.
 
-## UI/UX Review (optional)
+## UI/UX Review
 
-- If the project ships UI code and the `ui-ux-pro-max` skill is available in the current session, use it to review UI/UX quality.
+- If the project ships UI code, use the `ui-ux-pro-max` skill to review UI/UX quality.
 - Adapt the review to the project's frontend stack inferred from the codebase.
+
+## Modern Web Platform Review
+
+- Use the `modern-web-guidance` skills to check UI code against current web platform best practices and Baseline browser compatibility.
+- Flag legacy patterns (JS workarounds, hacks, unnecessary polyfills or dependencies) where a Baseline web platform feature is a better fit. Report them as findings — do not edit files.

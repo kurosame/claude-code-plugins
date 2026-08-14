@@ -8,7 +8,7 @@
     {
       "name": "code-review",
       "source": "./code-review",
-      "description": "Read-only code review slash commands with stack-specific variants under `/review-<stack>`. Reports findings without editing files."
+      "description": "Read-only code review slash commands with stack-specific variants under `/review-<stack>`. Reports findings without editing files. Depends on `ui-ux-pro-max-skill` and `modern-web-guidance` (auto-installed from this marketplace) for the UI/UX and modern web platform review steps."
     },
     {
       "name": "task",
@@ -34,6 +34,22 @@
       "name": "pr",
       "source": "./pr",
       "description": "Groups uncommitted changes by relatedness and opens one PR per group from a fresh branch off main (falls back to a single PR when only one group)."
+    },
+    {
+      "name": "ui-ux-pro-max-skill",
+      "source": {
+        "source": "github",
+        "repo": "nextlevelbuilder/ui-ux-pro-max-skill"
+      },
+      "description": "Third-party skill."
+    },
+    {
+      "name": "modern-web-guidance",
+      "source": {
+        "source": "github",
+        "repo": "GoogleChrome/modern-web-guidance"
+      },
+      "description": "Third-party skill."
     }
   ]
 }
