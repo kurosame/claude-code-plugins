@@ -38,16 +38,16 @@
     {
       "name": "ui-ux-pro-max-skill",
       "source": {
-        "source": "github",
-        "repo": "nextlevelbuilder/ui-ux-pro-max-skill"
+        "source": "url",
+        "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git"
       },
       "description": "Third-party skill."
     },
     {
       "name": "modern-web-guidance",
       "source": {
-        "source": "github",
-        "repo": "GoogleChrome/modern-web-guidance"
+        "source": "url",
+        "url": "https://github.com/GoogleChrome/modern-web-guidance.git"
       },
       "description": "Third-party skill."
     }
