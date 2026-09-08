@@ -9,6 +9,15 @@ For Vue or Nuxt projects, use `/review-vue` instead — it carries Vue/Nuxt-spec
 
 This is a **review-only** command. Do NOT edit, branch, commit, or open a PR — only produce findings.
 
+## Project Rules (highest priority)
+
+- If the repository defines project-specific rules — `CLAUDE.md` / `AGENTS.md`
+  and any files they import via `@<path>` (e.g. `docs/ai-rules.md`) — read
+  them before reviewing. Those rules OVERRIDE the
+  guidelines in this document and your own knowledge of best practices.
+- Never report a finding that contradicts a project rule, even if the
+  project's convention looks outdated or incorrect to you.
+
 ## Scope
 
 - Read-only review of the codebase to identify issues across multiple files.

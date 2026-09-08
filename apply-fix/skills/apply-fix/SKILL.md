@@ -12,6 +12,16 @@ This command's job:
 
 This command does NOT create branches, commit, or open a PR — it only edits / creates files and runs checks. Leave the resulting changes uncommitted.
 
+## Project Rules (highest priority)
+
+- If the repository defines project-specific rules — `CLAUDE.md` / `AGENTS.md`
+  and any files they import via `@<path>` (e.g. `docs/ai-rules.md`) — read
+  them before applying fixes. Those rules OVERRIDE
+  review findings, the guidelines in this document, and your own knowledge of
+  best practices.
+- Never apply a fix that contradicts a project rule, even if a finding calls
+  for it — skip that finding and note why in the summary.
+
 ## Workflow
 
 1. Identify the work to do:

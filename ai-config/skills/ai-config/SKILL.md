@@ -16,6 +16,7 @@ In-scope meta files:
 
 - `CLAUDE.md` (root and any nested `CLAUDE.md` under subdirectories)
 - `AGENTS.md` (root and any nested `AGENTS.md`). Note: `AGENTS.md` is a shared file that other AI tools (Codex, Cursor, Cline, etc.) may also consume — only review parts that state repository-level facts. Do NOT touch sections that clearly belong to another specific tool (heuristic: the section heading or its leading sentence names another tool, e.g. "## Cursor", "### For Codex", "Notes for Cline").
+- **Rulebook files** imported from `AGENTS.md` via `@<path>` (e.g. `docs/ai-rules.md`) — normative rules that intentionally override generic best practices and model knowledge (placement rules: see Target structure). Review them ONLY for staleness: a rule referencing code, files, paths, or versions that no longer exist in the repository. Do NOT judge a rule's merit, recommend weakening it for contradicting best practices, or recommend consolidating it into `AGENTS.md`.
 
 When searching for nested `CLAUDE.md` / `AGENTS.md`, exclude common non-source directories: `node_modules/`, `vendor/`, `.git/`, build outputs (`dist/`, `build/`, `.next/`, `.nuxt/`, `target/`), and any path listed in `.gitignore`.
 
@@ -35,6 +36,8 @@ When in-scope meta files are missing or being newly populated, the project shoul
 - **`AGENTS.md`** (project root, optionally nested for monorepo workspaces) — full inline content. The single source of truth for project facts. Consumed by Codex, Cursor, Cline, and any other agent that follows the agents.md spec. Target **≤200 lines** (see "Size guideline" below).
 - **`CLAUDE.md`** (project root) — primarily a one-line `@AGENTS.md` import. May optionally carry a small trailing section of Claude-Code-specific instructions below the import. The tail section MUST: (a) appear AFTER the `@AGENTS.md` line, (b) stay within ~20 lines, (c) contain only instructions that genuinely do not apply to other AI tools (e.g. plan-mode hints for a specific subdirectory, Claude Code skill or hook references). A tail section that meets these conditions is NOT Structural drift; anything beyond is.
 
+- **Rulebook file(s)** (optional, e.g. `docs/ai-rules.md`) — non-negotiable rules for AI agents (conventions that must override model priors), imported from `AGENTS.md` via a `@<path>` line. A sanctioned exception to the "full inline content" rule: normative rules live in the rulebook, factual project description in `AGENTS.md`. It must NOT live under `.claude/` (protected directory — see "Why no `.claude/rules/`"). An import line in `CLAUDE.md` instead of `AGENTS.md` is Structural drift (recommend moving it into `AGENTS.md`); the `AGENTS.md` import line and the rulebook itself are NOT drift. Do not recommend creating a rulebook when none exists.
+
 This is the canonical structure — recommend it by default. The one-line `@AGENTS.md` pattern is the official Claude Code recommendation for AGENTS.md interop (`code.claude.com/docs/en/memory`, AGENTS.md section: "create a `CLAUDE.md` that imports it so both tools read the same instructions without duplicating them").
 
 ### Why no `.claude/rules/`
@@ -43,7 +46,7 @@ Earlier iterations of this spec recommended splitting content into `.claude/rule
 
 - Claude Code v2.1.78+ enforces a built-in "protected directory" check that blocks writes to `.claude/**` paths. In headless / `-p` mode (which is what `anthropics/claude-code-action` uses), the check returns an immediate error and is **not overridable** by `--permission-mode` (acceptEdits, bypassPermissions, dontAsk all fail), settings.json `permissions.allow`, `--allowedTools`, or PermissionRequest hooks. Refs: `anthropics/claude-code#37253` (open), `#36282`, `#35646`.
 - This makes any `/apply-fix`-style automated maintenance of `.claude/rules/*.md` impossible from CI.
-- AGENTS.md as a single inline source of truth covers the same need (one canonical place for project facts) without hitting the protected-dir guard.
+- AGENTS.md as the single inline source of truth for project facts (optionally paired with a rulebook outside `.claude/` — see Target structure) covers the same need without hitting the protected-dir guard.
 
 If/when Claude Code provides a CI override for the protected-dir check, this section can be revisited and the rules/-based structure considered again.
 
@@ -73,7 +76,7 @@ When the project has nested workspaces (pnpm workspace, Cargo workspace, Go modu
      - `AGENTS.md` exists with content but `CLAUDE.md` does not import it (CLAUDE.md is empty, missing, or carries unrelated content). Recommend replacing `CLAUDE.md` with `@AGENTS.md` (or creating `CLAUDE.md` with that single line if missing).
      - A `.claude/rules/` directory exists in the repo as a leftover from earlier attempts. Recommend consolidating its content into `AGENTS.md` and deleting the directory. (Note: the consolidation step is the only place this command considers `.claude/rules/` — once removed, it is out of scope per the Scope rules.)
      - The project is a monorepo with workspaces whose conventions diverge meaningfully from the repo root, but only a single root meta config exists. Recommend per-workspace splits (see Target structure → Monorepos).
-   - **Stale**: a meta file states a *specific fact* that no longer matches reality (e.g. lists a script that was removed or renamed, references a directory that no longer exists, names a framework the project no longer uses). The fact category is present but the value is wrong.
+   - **Stale**: a meta file states a *specific fact* that no longer matches reality (e.g. lists a script that was removed or renamed, references a directory that no longer exists, names a framework the project no longer uses). The fact category is present but the value is wrong. This includes stale rulebook rules (see Scope).
    - **Missing content**: a meta file exists and is otherwise sound, but a *fact category* an agent would need is not represented at all (e.g. `AGENTS.md` does not mention how to run type checks even though `package.json` declares a `check:types` script).
 4. Output a findings report. For each item include:
    - **File path** (and line number / section heading if applicable). For Missing file / Structural drift findings, the path of the file to be created or restructured.
