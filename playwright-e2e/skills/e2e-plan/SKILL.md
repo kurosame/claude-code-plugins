@@ -41,6 +41,13 @@ Inspect the repository before planning. Pick targets in this order:
 
 Do not invent flows that have no corresponding code in the repo.
 
+## Writing UI copy assertions
+
+Never type a user-facing string from memory. Grep it out of the source — page/component directories plus any `constants.*` or i18n resources — and copy the match character for character, including punctuation and spacing (`、` `。` `,` and full-width vs. half-width spaces are distinct).
+
+- Prefer the shortest stable substring of the real copy, so unrelated copy edits do not break the assertion.
+- Before saving, grep every quoted literal in the plan back against the source. One with no match is a typo — fix or drop it. This is what catches lookalike characters that still read as plausible text, such as `お願い` → `お題い`.
+
 ## Output
 
 - Save plan files under the project's `testDir` (default `tests/`), one Markdown file per scenario group.
