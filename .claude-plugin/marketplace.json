@@ -28,7 +28,7 @@
     {
       "name": "apply-fix",
       "source": "./apply-fix",
-      "description": "Applies fixes (from prior review findings or check failures) and iterates the project's check commands (lint, type-check, build, test) until all pass."
+      "description": "Applies fixes (from prior review findings or check failures) and iterates the project's check commands (lint, type-check, build, test) until all pass. Depends on `ponytail` (auto-installed from this marketplace) to keep the applied fixes minimal."
     },
     {
       "name": "pr",
@@ -48,6 +48,14 @@
       "source": {
         "source": "url",
         "url": "https://github.com/GoogleChrome/modern-web-guidance.git"
+      },
+      "description": "Third-party skill."
+    },
+    {
+      "name": "ponytail",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/DietrichGebert/ponytail.git"
       },
       "description": "Third-party skill."
     }
