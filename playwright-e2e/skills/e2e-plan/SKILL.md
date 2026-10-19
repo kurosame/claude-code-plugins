@@ -51,5 +51,5 @@ Never type a user-facing string from memory. Grep it out of the source — page/
 ## Output
 
 - Save plan files under the project's `testDir` (default `tests/`), one Markdown file per scenario group.
-- On re-runs, replace stale plans rather than appending — overwrite any plan file you previously produced for the same scenario group so plans and specs stay in sync across CI runs.
+- On re-runs, edit the existing plan file for the same scenario group in place, and only where it is wrong or incomplete: typos, copy that no longer matches the source, flows that no longer exist, or missing coverage. Leave every other line unchanged — do not reword it, since rewording only churns the generated specs. The planner's save step can regenerate the whole file, so after saving, check `git diff` on each existing plan and revert any hunk that only rewords.
 - Match the language of the project's existing user-facing copy / docs. If the UI copy is in Japanese, write the plans in Japanese; otherwise match the project's dominant language.
