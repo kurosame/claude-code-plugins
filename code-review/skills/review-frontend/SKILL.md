@@ -1,53 +1,20 @@
 ---
 name: review-frontend
-description: Frontend-focused code review of the entire codebase. Reports findings only — does not edit files.
+description: Framework-agnostic frontend code review of the entire codebase. Reports findings only — does not edit files.
 ---
 
-Follow these instructions strictly. This command targets **frontend projects in the Node ecosystem** (managed by `npm` / `yarn` / `pnpm`).
+Review the **framework-agnostic web layer** of a frontend project, including general application logic and architecture. Leave framework-specific patterns to the matching `/review-<stack>` skill, which runs alongside this one.
 
-For Vue or Nuxt projects, use `/review-vue` instead — it carries Vue/Nuxt-specific rules on top of the general frontend guidelines.
+Read and follow `${CLAUDE_PLUGIN_ROOT}/references/review-rules.md` first.
 
-This is a **review-only** command. Do NOT edit, branch, commit, or open a PR — only produce findings.
+## Skills to apply
 
-## Project Rules (highest priority)
+- `ui-ux-pro-max`: UI/UX quality of the shipped UI.
+- `modern-web-guidance`: legacy patterns (JS workarounds, polyfills, dependencies) that a Baseline web platform feature replaces.
 
-- If the repository defines project-specific rules — `CLAUDE.md` / `AGENTS.md`
-  and any files they import via `@<path>` (e.g. `docs/ai-rules.md`) — read
-  them before reviewing. Those rules OVERRIDE the
-  guidelines in this document and your own knowledge of best practices.
-- Never report a finding that contradicts a project rule, even if the
-  project's convention looks outdated or incorrect to you.
+## Focus
 
-## Scope
-
-- Read-only review of the codebase to identify issues across multiple files.
-- Produce a structured findings report at the end of the run.
-
-## Workflow
-
-1. Explore the codebase to identify files with potential issues.
-2. Review files focusing on logic, potential bugs, security issues, and architectural improvements.
-3. Output a findings report with one section per file. For each issue include:
-   - File path (and line number if applicable)
-   - Severity (high / medium / low)
-   - Description of the problem
-   - Suggested fix (described in prose; do NOT write the patch)
-4. If no issues are found, say so explicitly and exit.
-
-## Review Guidelines
-
-- Do **NOT** edit any files. This command is read-only.
-- Do **NOT** suggest formatting changes (indentation, spacing, line breaks, etc.).
-- Do **NOT** suggest import statement changes (ordering, grouping, etc.).
-- Code formatting and import ordering are managed by formatters/linters (Prettier, ESLint, Stylelint, Biome, etc.) and enforced via git hooks.
-- Focus only on logic, potential bugs, security issues, and architectural improvements.
-
-## UI/UX Review
-
-- If the project ships UI code, use the `ui-ux-pro-max` skill to review UI/UX quality.
-- Adapt the review to the project's frontend stack inferred from the codebase.
-
-## Modern Web Platform Review
-
-- Use the `modern-web-guidance` skills to check UI code against current web platform best practices and Baseline browser compatibility.
-- Flag legacy patterns (JS workarounds, hacks, unnecessary polyfills or dependencies) where a Baseline web platform feature is a better fit. Report them as findings — do not edit files.
+- **Accessibility**: non-semantic interactive elements, missing labels / alt text, broken keyboard navigation or focus management.
+- **Browser security**: unsanitized HTML or URLs reaching the DOM; secrets in client-exposed env vars or the bundle; untrusted third-party scripts.
+- **Performance**: heavy dependencies or missing code splitting; images without dimensions, lazy loading, or modern formats; render-blocking resources; layout shift.
+- **Async UI**: missing loading / error states; races between overlapping requests.

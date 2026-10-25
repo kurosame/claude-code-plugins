@@ -8,7 +8,7 @@
     {
       "name": "code-review",
       "source": "./code-review",
-      "description": "Read-only code review slash commands with stack-specific variants under `/review-<stack>`. Reports findings without editing files. Depends on `ui-ux-pro-max-skill` and `modern-web-guidance` (auto-installed from this marketplace) for the UI/UX and modern web platform review steps."
+      "description": "Read-only code review slash commands with stack-specific variants under `/review-<stack>`. Reports findings without editing files. Third-party skills used by each stack are declared as dependencies and auto-installed from this marketplace."
     },
     {
       "name": "task",
@@ -36,14 +36,6 @@
       "description": "Groups uncommitted changes by relatedness and opens one PR per group from a fresh branch off main (falls back to a single PR when only one group)."
     },
     {
-      "name": "ui-ux-pro-max-skill",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git"
-      },
-      "description": "Third-party skill."
-    },
-    {
       "name": "modern-web-guidance",
       "source": {
         "source": "url",
@@ -56,6 +48,23 @@
       "source": {
         "source": "url",
         "url": "https://github.com/DietrichGebert/ponytail.git"
+      },
+      "description": "Third-party skill."
+    },
+    {
+      "name": "ui-ux-pro-max-skill",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git"
+      },
+      "description": "Third-party skill."
+    },
+    {
+      "name": "vue-best-practices",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/vuejs-ai/skills.git",
+        "path": "skills/vue-best-practices"
       },
       "description": "Third-party skill."
     }
