@@ -52,6 +52,15 @@
       "description": "Third-party skill."
     },
     {
+      "name": "react-best-practices",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/vercel-labs/agent-skills.git",
+        "path": "skills/react-best-practices"
+      },
+      "description": "Third-party skill."
+    },
+    {
       "name": "ui-ux-pro-max-skill",
       "source": {
         "source": "url",

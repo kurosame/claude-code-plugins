@@ -6,5 +6,5 @@
     "name": "kurosame",
     "url": "https://github.com/kurosame"
   },
-  "dependencies": ["modern-web-guidance", "ui-ux-pro-max-skill", "vue-best-practices"]
+  "dependencies": ["modern-web-guidance", "react-best-practices", "ui-ux-pro-max-skill", "vue-best-practices"]
 }
