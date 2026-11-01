@@ -36,6 +36,51 @@
       "description": "Groups uncommitted changes by relatedness and opens one PR per group from a fresh branch off main (falls back to a single PR when only one group)."
     },
     {
+      "name": "golang-concurrency",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/samber/cc-skills-golang.git",
+        "path": "skills/golang-concurrency"
+      },
+      "description": "Third-party skill."
+    },
+    {
+      "name": "golang-context",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/samber/cc-skills-golang.git",
+        "path": "skills/golang-context"
+      },
+      "description": "Third-party skill."
+    },
+    {
+      "name": "golang-error-handling",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/samber/cc-skills-golang.git",
+        "path": "skills/golang-error-handling"
+      },
+      "description": "Third-party skill."
+    },
+    {
+      "name": "golang-safety",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/samber/cc-skills-golang.git",
+        "path": "skills/golang-safety"
+      },
+      "description": "Third-party skill."
+    },
+    {
+      "name": "golang-security",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/samber/cc-skills-golang.git",
+        "path": "skills/golang-security"
+      },
+      "description": "Third-party skill."
+    },
+    {
       "name": "modern-web-guidance",
       "source": {
         "source": "url",
@@ -57,6 +102,15 @@
         "source": "git-subdir",
         "url": "https://github.com/vercel-labs/agent-skills.git",
         "path": "skills/react-best-practices"
+      },
+      "description": "Third-party skill."
+    },
+    {
+      "name": "terraform-style-guide",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/hashicorp/agent-skills.git",
+        "path": "plugins/terraform/skills/terraform-style-guide"
       },
       "description": "Third-party skill."
     },
