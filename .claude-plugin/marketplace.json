@@ -1,5 +1,6 @@
 {
   "name": "kurosame-claude-code-plugins",
+  "description": "Claude Code plugins for AI-driven code review and development, run locally or in CI.",
   "owner": {
     "name": "kurosame",
     "url": "https://github.com/kurosame"
@@ -40,7 +41,9 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/samber/cc-skills-golang.git",
-        "path": "skills/golang-concurrency"
+        "path": "skills/golang-concurrency",
+        "ref": "main",
+        "sha": "246b6c4c1ab3077dee114beb9ade3bb0527dfebc"
       },
       "description": "Third-party skill."
     },
@@ -49,7 +52,9 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/samber/cc-skills-golang.git",
-        "path": "skills/golang-context"
+        "path": "skills/golang-context",
+        "ref": "main",
+        "sha": "246b6c4c1ab3077dee114beb9ade3bb0527dfebc"
       },
       "description": "Third-party skill."
     },
@@ -58,7 +63,9 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/samber/cc-skills-golang.git",
-        "path": "skills/golang-error-handling"
+        "path": "skills/golang-error-handling",
+        "ref": "main",
+        "sha": "246b6c4c1ab3077dee114beb9ade3bb0527dfebc"
       },
       "description": "Third-party skill."
     },
@@ -67,7 +74,9 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/samber/cc-skills-golang.git",
-        "path": "skills/golang-safety"
+        "path": "skills/golang-safety",
+        "ref": "main",
+        "sha": "246b6c4c1ab3077dee114beb9ade3bb0527dfebc"
       },
       "description": "Third-party skill."
     },
@@ -76,7 +85,9 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/samber/cc-skills-golang.git",
-        "path": "skills/golang-security"
+        "path": "skills/golang-security",
+        "ref": "main",
+        "sha": "246b6c4c1ab3077dee114beb9ade3bb0527dfebc"
       },
       "description": "Third-party skill."
     },
@@ -84,7 +95,9 @@
       "name": "modern-web-guidance",
       "source": {
         "source": "url",
-        "url": "https://github.com/GoogleChrome/modern-web-guidance.git"
+        "url": "https://github.com/GoogleChrome/modern-web-guidance.git",
+        "ref": "main",
+        "sha": "4f2b13e25c5815b3f080ca0d983e828d96561a0f"
       },
       "description": "Third-party skill."
     },
@@ -92,7 +105,9 @@
       "name": "ponytail",
       "source": {
         "source": "url",
-        "url": "https://github.com/DietrichGebert/ponytail.git"
+        "url": "https://github.com/DietrichGebert/ponytail.git",
+        "ref": "main",
+        "sha": "96608e078b2d5ea607c5c3b8b5a54d1c1fba6846"
       },
       "description": "Third-party skill."
     },
@@ -101,7 +116,9 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/vercel-labs/agent-skills.git",
-        "path": "skills/react-best-practices"
+        "path": "skills/react-best-practices",
+        "ref": "main",
+        "sha": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62"
       },
       "description": "Third-party skill."
     },
@@ -110,7 +127,9 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/hashicorp/agent-skills.git",
-        "path": "plugins/terraform/skills/terraform-style-guide"
+        "path": "plugins/terraform/skills/terraform-style-guide",
+        "ref": "main",
+        "sha": "bc6b14b77481c3cbfbb06a0166be7245ed45798c"
       },
       "description": "Third-party skill."
     },
@@ -118,7 +137,9 @@
       "name": "ui-ux-pro-max-skill",
       "source": {
         "source": "url",
-        "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git"
+        "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git",
+        "ref": "main",
+        "sha": "3a13158ff1f32156cbe144108de48eda2ecaed9a"
       },
       "description": "Third-party skill."
     },
@@ -127,7 +148,9 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/vuejs-ai/skills.git",
-        "path": "skills/vue-best-practices"
+        "path": "skills/vue-best-practices",
+        "ref": "main",
+        "sha": "198f0cd8f7f9c0a3d9b566ccc16de6677519ee78"
       },
       "description": "Third-party skill."
     }

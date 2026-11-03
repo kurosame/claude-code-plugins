@@ -1,0 +1,41 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":timezone(Asia/Tokyo)",
+    "schedule:daily",
+    "helpers:pinGitHubActionDigestsToSemver"
+  ],
+  "prHourlyLimit": 0,
+  "prConcurrentLimit": 3,
+  "pinDigests": true,
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["patch", "digest", "pinDigest"],
+      "minimumReleaseAge": "3 days",
+      "description": "Supply-chain safeguard: hold these updates until the release has aged past minimumReleaseAge.",
+      "groupName": "all patch and digest updates"
+    },
+    {
+      "matchUpdateTypes": ["minor"],
+      "minimumReleaseAge": "7 days",
+      "description": "Supply-chain safeguard: hold minor updates until the release has aged past minimumReleaseAge."
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "minimumReleaseAge": "14 days",
+      "description": "Supply-chain safeguard: hold major updates until the release has aged past minimumReleaseAge."
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "jsonata",
+      "fileFormat": "json",
+      "managerFilePatterns": [".claude-plugin/marketplace.json"],
+      "matchStrings": [
+        "plugins.source[sha].{ \"depName\": $replace(url, /^https:\\/\\/github\\.com\\/|\\.git$/, \"\"), \"currentValue\": ref, \"currentDigest\": sha }"
+      ],
+      "datasourceTemplate": "github-digest"
+    }
+  ]
+}

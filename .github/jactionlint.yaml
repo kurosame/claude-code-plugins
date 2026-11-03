@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jdx/jactionlint/main/schema/jactionlint-config.json
+profile: default
+# Online checks are disabled locally to avoid handling GitHub tokens; CI enables them.
+online: false
+online-options:
+  gh-cli: false
