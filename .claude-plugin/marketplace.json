@@ -43,7 +43,7 @@
         "url": "https://github.com/samber/cc-skills-golang.git",
         "path": "skills/golang-concurrency",
         "ref": "main",
-        "sha": "246b6c4c1ab3077dee114beb9ade3bb0527dfebc"
+        "sha": "bb1d43d98a3f8ab639a0042f90d0ec524e39a477"
       },
       "description": "Third-party skill."
     },
@@ -54,7 +54,7 @@
         "url": "https://github.com/samber/cc-skills-golang.git",
         "path": "skills/golang-context",
         "ref": "main",
-        "sha": "246b6c4c1ab3077dee114beb9ade3bb0527dfebc"
+        "sha": "bb1d43d98a3f8ab639a0042f90d0ec524e39a477"
       },
       "description": "Third-party skill."
     },
@@ -65,7 +65,7 @@
         "url": "https://github.com/samber/cc-skills-golang.git",
         "path": "skills/golang-error-handling",
         "ref": "main",
-        "sha": "246b6c4c1ab3077dee114beb9ade3bb0527dfebc"
+        "sha": "bb1d43d98a3f8ab639a0042f90d0ec524e39a477"
       },
       "description": "Third-party skill."
     },
@@ -76,7 +76,7 @@
         "url": "https://github.com/samber/cc-skills-golang.git",
         "path": "skills/golang-safety",
         "ref": "main",
-        "sha": "246b6c4c1ab3077dee114beb9ade3bb0527dfebc"
+        "sha": "bb1d43d98a3f8ab639a0042f90d0ec524e39a477"
       },
       "description": "Third-party skill."
     },
@@ -87,7 +87,7 @@
         "url": "https://github.com/samber/cc-skills-golang.git",
         "path": "skills/golang-security",
         "ref": "main",
-        "sha": "246b6c4c1ab3077dee114beb9ade3bb0527dfebc"
+        "sha": "bb1d43d98a3f8ab639a0042f90d0ec524e39a477"
       },
       "description": "Third-party skill."
     },
@@ -97,7 +97,7 @@
         "source": "url",
         "url": "https://github.com/GoogleChrome/modern-web-guidance.git",
         "ref": "main",
-        "sha": "4f2b13e25c5815b3f080ca0d983e828d96561a0f"
+        "sha": "341268561baaff256927c931ec8215dbd30e3cee"
       },
       "description": "Third-party skill."
     },
@@ -129,7 +129,7 @@
         "url": "https://github.com/hashicorp/agent-skills.git",
         "path": "plugins/terraform/skills/terraform-style-guide",
         "ref": "main",
-        "sha": "bc6b14b77481c3cbfbb06a0166be7245ed45798c"
+        "sha": "5e30fa5c867ba6777c37e4206babfd08049c396f"
       },
       "description": "Third-party skill."
     },
