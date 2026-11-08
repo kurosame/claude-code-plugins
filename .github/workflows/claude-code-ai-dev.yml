@@ -1,0 +1,119 @@
+name: Claude Code AI Dev
+
+on:
+  workflow_call:
+    inputs:
+      app-client-id:
+        description: Client ID of the GitHub App.
+        type: string
+        required: true
+      notion-database-id:
+        description: Notion task database ID.
+        type: string
+        required: true
+      notion-project-page-id:
+        description: Notion project page ID the tasks must belong to.
+        type: string
+        required: true
+      pick-count:
+        description: Maximum number of Notion tasks to implement per run.
+        type: number
+        default: 3
+      allowed-tools:
+        description: Repository-specific allowed tools.
+        type: string
+        default: ""
+      show-full-output:
+        description: Show full Claude output for debugging.
+        type: boolean
+        default: false
+    secrets:
+      CLAUDE_CODE_OAUTH_TOKEN:
+        required: true
+      APP_PRIVATE_KEY:
+        required: true
+      NOTION_ACCESS_TOKEN:
+        required: true
+
+permissions:
+  contents: read
+
+env:
+  ALLOWED_TOOLS: >-
+    Bash(git add:*),
+    Bash(git branch:*),
+    Bash(git checkout:*),
+    Bash(git commit:*),
+    Bash(git diff:*),
+    Bash(git log:*),
+    Bash(git push -u origin claude/*),
+    Bash(git rev-parse:*),
+    Bash(git status:*),
+    Bash(gh pr create:*)
+
+jobs:
+  pick:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    outputs:
+      tasks: ${{ steps.pick.outputs.tasks }}
+    steps:
+      # jactionlint ignore=unpinned-uses
+      - uses: kurosame/claude-code-plugins/.github/actions/notion-pick-task@main
+        id: pick
+        with:
+          notion-access-token: ${{ secrets.NOTION_ACCESS_TOKEN }}
+          notion-database-id: ${{ inputs.notion-database-id }}
+          notion-project-page-id: ${{ inputs.notion-project-page-id }}
+          count: ${{ inputs.pick-count }}
+
+  dev:
+    name: Dev (${{ matrix.task.url }})
+    needs: pick
+    if: needs.pick.outputs.tasks != ''
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    strategy:
+      matrix:
+        task: ${{ fromJson(needs.pick.outputs.tasks) }}
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Set up Claude Code
+        if: hashFiles('.github/actions/claude-code-setup/action.yml') != ''
+        uses: ./.github/actions/claude-code-setup
+      - uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        id: app-token
+        with:
+          client-id: ${{ inputs.app-client-id }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+          permission-workflows: write
+      - name: Write task file
+        env:
+          TASK_CONTENT: ${{ matrix.task.content }}
+        run: printf '%s' "$TASK_CONTENT" > .claude-task.md
+      - uses: anthropics/claude-code-action@ae68417a745a5df4b2124873632bd73a2255e6f6 # v1.0.259
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ steps.app-token.outputs.token }}
+          show_full_output: ${{ inputs.show-full-output }}
+          plugins: |
+            task@kurosame-claude-code-plugins
+            apply-fix@kurosame-claude-code-plugins
+            pr@kurosame-claude-code-plugins
+          plugin_marketplaces: |
+            https://github.com/kurosame/claude-code-plugins.git
+          prompt: |
+            1. Run /task.
+            2. Run /apply-fix.
+            3. Run /pr.
+          claude_args: |
+            --model opus
+            --max-turns 200
+            --permission-mode acceptEdits
+            --allowedTools "${{ env.ALLOWED_TOOLS }}${{ inputs.allowed-tools && format(',{0}', inputs.allowed-tools) || '' }}"

@@ -1,0 +1,34 @@
+name: Notion pick task
+description: Pick implementable Notion tasks, mark them in progress and output their content.
+
+inputs:
+  notion-access-token:
+    description: Notion integration token.
+    required: true
+  notion-database-id:
+    description: Notion task database ID.
+    required: true
+  notion-project-page-id:
+    description: Notion project page ID the tasks must belong to.
+    required: true
+  count:
+    description: Maximum number of tasks to pick.
+    required: true
+
+outputs:
+  tasks:
+    description: JSON array of {url, content}, empty when no task is picked.
+    value: ${{ steps.pick.outputs.tasks }}
+
+runs:
+  using: composite
+  steps:
+    - name: Pick tasks
+      id: pick
+      shell: bash
+      env:
+        NOTION_ACCESS_TOKEN: ${{ inputs.notion-access-token }}
+        NOTION_DATABASE_ID: ${{ inputs.notion-database-id }}
+        NOTION_PROJECT_PAGE_ID: ${{ inputs.notion-project-page-id }}
+        NOTION_PICK_COUNT: ${{ inputs.count }}
+      run: node "$GITHUB_ACTION_PATH/pick-task.mjs"

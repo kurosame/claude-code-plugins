@@ -1,0 +1,91 @@
+name: Claude Code Review
+
+on:
+  workflow_call:
+    inputs:
+      app-client-id:
+        description: Client ID of the GitHub App.
+        type: string
+        required: true
+      review-commands:
+        description: Review commands, e.g. "/review-frontend, /review-vue".
+        type: string
+        required: true
+      allowed-tools:
+        description: Repository-specific allowed tools.
+        type: string
+        default: ''
+      show-full-output:
+        description: Show full Claude output for debugging.
+        type: boolean
+        default: false
+    secrets:
+      CLAUDE_CODE_OAUTH_TOKEN:
+        required: true
+      APP_PRIVATE_KEY:
+        required: true
+
+permissions:
+  contents: read
+
+env:
+  ALLOWED_TOOLS: >-
+    Bash(rm:*),
+    Bash(git add:*),
+    Bash(git branch:*),
+    Bash(git checkout:*),
+    Bash(git cherry-pick:*),
+    Bash(git commit:*),
+    Bash(git diff:*),
+    Bash(git diff-tree:*),
+    Bash(git log:*),
+    Bash(git ls-files:*),
+    Bash(git ls-remote:*),
+    Bash(git push -u origin claude/*),
+    Bash(git restore:*),
+    Bash(git rev-parse:*),
+    Bash(git rm:*),
+    Bash(git stash:*),
+    Bash(git status:*),
+    Bash(gh pr create:*)
+
+jobs:
+  code-review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Set up Claude Code
+        if: hashFiles('.github/actions/claude-code-setup/action.yml') != ''
+        uses: ./.github/actions/claude-code-setup
+      - uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        id: app-token
+        with:
+          client-id: ${{ inputs.app-client-id }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+      - uses: anthropics/claude-code-action@ae68417a745a5df4b2124873632bd73a2255e6f6 # v1.0.259
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ steps.app-token.outputs.token }}
+          show_full_output: ${{ inputs.show-full-output }}
+          plugins: |
+            code-review@kurosame-claude-code-plugins
+            ai-config@kurosame-claude-code-plugins
+            apply-fix@kurosame-claude-code-plugins
+            pr@kurosame-claude-code-plugins
+          plugin_marketplaces: |
+            https://github.com/kurosame/claude-code-plugins.git
+          prompt: |
+            1. Run ${{ inputs.review-commands }} and /ai-config in parallel.
+            2. Run /apply-fix.
+            3. Run /pr.
+          claude_args: |
+            --model opus
+            --max-turns 150
+            --permission-mode acceptEdits
+            --allowedTools "${{ env.ALLOWED_TOOLS }}${{ inputs.allowed-tools && format(',{0}', inputs.allowed-tools) || '' }}"

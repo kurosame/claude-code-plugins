@@ -1,0 +1,77 @@
+name: Claude Code
+
+on:
+  workflow_call:
+    inputs:
+      app-client-id:
+        description: Client ID of the GitHub App.
+        type: string
+        required: true
+      allowed-tools:
+        description: Repository-specific allowed tools.
+        type: string
+        default: ''
+    secrets:
+      CLAUDE_CODE_OAUTH_TOKEN:
+        required: true
+      APP_PRIVATE_KEY:
+        required: true
+
+permissions: {}
+
+env:
+  GIT_EDITOR: 'true'
+  ALLOWED_TOOLS: >-
+    Bash(git checkout --ours:*),
+    Bash(git checkout --theirs:*),
+    Bash(git diff:*),
+    Bash(git fetch origin),
+    Bash(git log:*),
+    Bash(git rebase --abort),
+    Bash(git rebase --continue),
+    Bash(git rebase origin/main),
+    Bash(git status:*),
+    WebFetch(domain:github.com),
+    WebFetch(domain:raw.githubusercontent.com),
+    WebSearch
+
+jobs:
+  claude-code:
+    if: >-
+      contains(github.event.comment.body, '@claude-fix') &&
+      github.event.comment.author_association == 'OWNER'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.event.issue.number || github.event.pull_request.number }}
+      queue: max
+    permissions:
+      actions: read
+      pull-requests: read
+    steps:
+      - uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        id: app-token
+        with:
+          client-id: ${{ inputs.app-client-id }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+          permission-issues: write
+          permission-workflows: write
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
+          persist-credentials: true
+      - name: Set up Claude Code
+        if: hashFiles('.github/actions/claude-code-setup/action.yml') != ''
+        uses: ./.github/actions/claude-code-setup
+      - uses: anthropics/claude-code-action@ae68417a745a5df4b2124873632bd73a2255e6f6 # v1.0.259
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ steps.app-token.outputs.token }}
+          trigger_phrase: '@claude-fix'
+          claude_args: |
+            --model opus
+            --max-turns 50
+            --allowedTools "${{ env.ALLOWED_TOOLS }}${{ inputs.allowed-tools && format(',{0}', inputs.allowed-tools) || '' }}"

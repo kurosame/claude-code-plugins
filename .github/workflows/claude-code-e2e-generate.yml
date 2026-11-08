@@ -1,0 +1,105 @@
+name: Claude Code E2E Generate
+
+on:
+  workflow_call:
+    inputs:
+      app-client-id:
+        description: Client ID of the GitHub App.
+        type: string
+        required: true
+      app-secret-1-name:
+        description: Environment variable name the app under test reads APP_SECRET_1 from.
+        type: string
+        default: ""
+      show-full-output:
+        description: Show full Claude output for debugging.
+        type: boolean
+        default: false
+    secrets:
+      CLAUDE_CODE_OAUTH_TOKEN:
+        required: true
+      APP_PRIVATE_KEY:
+        required: true
+      APP_SECRET_1:
+        description: Secret for the app under test, exported as app-secret-1-name.
+        required: false
+
+permissions:
+  contents: read
+
+env:
+  ALLOWED_TOOLS: >-
+    Bash(test:*),
+    Bash(git add:*),
+    Bash(git branch:*),
+    Bash(git checkout:*),
+    Bash(git cherry-pick:*),
+    Bash(git commit:*),
+    Bash(git diff:*),
+    Bash(git diff-tree:*),
+    Bash(git log:*),
+    Bash(git ls-files:*),
+    Bash(git ls-remote:*),
+    Bash(git push -u origin claude/*),
+    Bash(git restore:*),
+    Bash(git rev-parse:*),
+    Bash(git rm:*),
+    Bash(git stash:*),
+    Bash(git status:*),
+    Bash(gh pr create:*),
+    mcp__playwright-test
+
+jobs:
+  e2e:
+    if: github.event_name != 'pull_request' || github.event.pull_request.merged == true
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Set up Claude Code
+        uses: ./.github/actions/claude-code-setup
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+      - name: Initialize Playwright agents
+        run: npx playwright init-agents --loop=claude
+      - uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        id: app-token
+        with:
+          client-id: ${{ inputs.app-client-id }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+      - name: Export app environment
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          APP_SECRET_1_NAME: ${{ inputs.app-secret-1-name }}
+          APP_SECRET_1: ${{ secrets.APP_SECRET_1 }}
+        with:
+          script: |
+            for (const [key, name] of Object.entries(process.env)) {
+              const i = key.match(/^APP_SECRET_(\d+)_NAME$/)?.[1];
+              if (i && name) core.exportVariable(name, process.env[`APP_SECRET_${i}`]);
+            }
+      - uses: anthropics/claude-code-action@ae68417a745a5df4b2124873632bd73a2255e6f6 # v1.0.259
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ steps.app-token.outputs.token }}
+          show_full_output: ${{ inputs.show-full-output }}
+          plugins: |
+            playwright-e2e@kurosame-claude-code-plugins
+            pr@kurosame-claude-code-plugins
+          plugin_marketplaces: |
+            https://github.com/kurosame/claude-code-plugins.git
+          prompt: |
+            1. Run /e2e-generate.
+            2. Run /pr.
+          claude_args: |
+            --model sonnet
+            --max-turns 200
+            --permission-mode acceptEdits
+            --allowedTools "${{ env.ALLOWED_TOOLS }}"

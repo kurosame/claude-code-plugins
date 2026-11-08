@@ -25,6 +25,11 @@
       "matchUpdateTypes": ["major"],
       "minimumReleaseAge": "14 days",
       "description": "Supply-chain safeguard: hold major updates until the release has aged past minimumReleaseAge."
+    },
+    {
+      "matchPackageNames": ["kurosame/claude-code-plugins"],
+      "pinDigests": false,
+      "description": "Disable pinDigests because pinning the self-reference would loop: every merge to main triggers another digest-update PR."
     }
   ],
   "customManagers": [
