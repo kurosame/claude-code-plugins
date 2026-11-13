@@ -43,7 +43,7 @@
         "url": "https://github.com/samber/cc-skills-golang.git",
         "path": "skills/golang-concurrency",
         "ref": "main",
-        "sha": "bb1d43d98a3f8ab639a0042f90d0ec524e39a477"
+        "sha": "d68d80aec298e1b74b37c2a472c002b5217248b3"
       },
       "description": "Third-party skill."
     },
@@ -54,7 +54,7 @@
         "url": "https://github.com/samber/cc-skills-golang.git",
         "path": "skills/golang-context",
         "ref": "main",
-        "sha": "bb1d43d98a3f8ab639a0042f90d0ec524e39a477"
+        "sha": "d68d80aec298e1b74b37c2a472c002b5217248b3"
       },
       "description": "Third-party skill."
     },
@@ -65,7 +65,7 @@
         "url": "https://github.com/samber/cc-skills-golang.git",
         "path": "skills/golang-error-handling",
         "ref": "main",
-        "sha": "bb1d43d98a3f8ab639a0042f90d0ec524e39a477"
+        "sha": "d68d80aec298e1b74b37c2a472c002b5217248b3"
       },
       "description": "Third-party skill."
     },
@@ -76,7 +76,7 @@
         "url": "https://github.com/samber/cc-skills-golang.git",
         "path": "skills/golang-safety",
         "ref": "main",
-        "sha": "bb1d43d98a3f8ab639a0042f90d0ec524e39a477"
+        "sha": "d68d80aec298e1b74b37c2a472c002b5217248b3"
       },
       "description": "Third-party skill."
     },
@@ -87,7 +87,7 @@
         "url": "https://github.com/samber/cc-skills-golang.git",
         "path": "skills/golang-security",
         "ref": "main",
-        "sha": "bb1d43d98a3f8ab639a0042f90d0ec524e39a477"
+        "sha": "d68d80aec298e1b74b37c2a472c002b5217248b3"
       },
       "description": "Third-party skill."
     },
@@ -97,7 +97,7 @@
         "source": "url",
         "url": "https://github.com/GoogleChrome/modern-web-guidance.git",
         "ref": "main",
-        "sha": "341268561baaff256927c931ec8215dbd30e3cee"
+        "sha": "4dd968349e54ca45a05dd5c818fb035c9054b022"
       },
       "description": "Third-party skill."
     },
@@ -139,7 +139,7 @@
         "source": "url",
         "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git",
         "ref": "main",
-        "sha": "3a13158ff1f32156cbe144108de48eda2ecaed9a"
+        "sha": "6ae86f61f520d6ca229d2f40e070410638c908c5"
       },
       "description": "Third-party skill."
     },
