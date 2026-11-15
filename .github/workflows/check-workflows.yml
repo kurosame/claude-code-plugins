@@ -3,9 +3,10 @@ name: Check Workflows
 on:
   push:
     paths:
-      - '.github/**'
+      - ".github/**"
 
-permissions: {}
+permissions:
+  contents: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -16,8 +17,6 @@ jobs:
     name: Lint
     runs-on: ubuntu-26.04
     timeout-minutes: 10
-    permissions:
-      contents: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
