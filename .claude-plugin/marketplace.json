@@ -97,7 +97,7 @@
         "source": "url",
         "url": "https://github.com/GoogleChrome/modern-web-guidance.git",
         "ref": "main",
-        "sha": "64a6d708f5a43f2cd3fde5d4d7db3905ba1bdf65"
+        "sha": "2b4aa13a72dd47cd135b06ce5abfccd92e19b24f"
       },
       "description": "Third-party skill."
     },
@@ -107,7 +107,7 @@
         "source": "url",
         "url": "https://github.com/DietrichGebert/ponytail.git",
         "ref": "main",
-        "sha": "96608e078b2d5ea607c5c3b8b5a54d1c1fba6846"
+        "sha": "ebd8654c2c627f721eb8f9c0d1bd4090a29f9e10"
       },
       "description": "Third-party skill."
     },
@@ -118,7 +118,7 @@
         "url": "https://github.com/vercel-labs/agent-skills.git",
         "path": "skills/react-best-practices",
         "ref": "main",
-        "sha": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62"
+        "sha": "5a37a6329fbad3666c3207392a6a7c0110e92efb"
       },
       "description": "Third-party skill."
     },
